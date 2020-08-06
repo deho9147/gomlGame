@@ -10,14 +10,17 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 import reducers from "./components/redux/reducers";
+import wsSagas from "./components/sagas/socketLink";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
+sagaMiddleware.run(wsSagas);
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,

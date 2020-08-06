@@ -24,6 +24,12 @@ function createEventChannel(mySocket) {
     };
   });
 }
+function* recieveFromSocket() {
+  const channel = yield call(createEventChannel, ws);
+  while (true) {
+    const messageTuple = yield take(channel);
+  }
+}
 
 function* sendState() {}
 
