@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
-
+.ShowLevel{
+  text-align: center;
+  line-height: 15px;
+  padding: auto;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -31,8 +31,21 @@ function* recieveFromSocket() {
   }
 }
 
+function createRoom(){
+    ws.emit("CREATE_ROOM")
+}
+
+function joinRoom(action) {
+  console.log(action.payload);
+  ws.emit("JOIN_ROOM", action.payload);
+}
+
 function* sendState() {}
 
 export default function* wsSagas() {
-  yield all([takeEvery("ADD_PLAYER", sendState)]);
+  yield all([
+    takeEvery("CREATE_ROOM", createRoom),
+    takeEvery("JOIN_ROOM", joinRoom),
+    takeEvery("ADD_PLAYER", sendState),
+  ]);
 }

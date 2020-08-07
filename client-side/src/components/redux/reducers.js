@@ -27,23 +27,84 @@ function generatePlayerColor(state) {
   }
 }
 
+function newClueGiver(state){
+    let newClueGiverPossiblities = [];
+    if (state.clueGiverPossibilities.length===0){
+        newClueGiverPossiblities = Object.keys(state.players)
+    } else {
+        newClueGiverPossiblities = state.clueGiverPossibilities.slice(0) //duplicates array
+    }
+    const index = Math.floor(Math.random()*newClueGiverPossiblities.length);
+    const newClueGiver = newClueGiverPossiblities[index]
+    newClueGiverPossiblities.splice(index,1);
+    return [newClueGiver, newClueGiverPossiblities]
+}
+
+function scorePoints(state){
+    let clueGiverPoints = 0;
+    const updatedPlayers =  Object.keys(state.players).reduce((pastArray, key)=> {
+        let updatedPlayer = { ...state.playerArray[key] };
+      if (state.players[key].guess !== undefined) {
+        console.log("has guess");
+        if (
+          state.players[key].guess > state.level - 30 &&
+          state.players[key].guess <= state.level
+        ) {
+          updatedPlayer = {
+            ...state.players[key],
+            score: state.players[key].score + 4,
+          };
+          clueGiverPoints = clueGiverPoints + 1
+        } else if (
+          state.players[key].guess > state.level - 60 &&
+          state.players[key].guess <= state.level + 30
+        ) {
+          updatedPlayer = {
+            ...state.tempPlayers[key],
+            score: state.players[key].score + 3,
+          };
+          clueGiverPoints = clueGiverPoints + 1
+        } else if (
+          state.players[key].guess > state.level - 90 &&
+          state.players[key].guess <= state.level + 60
+        ) {
+          updatedPlayer = {
+            ...state.players[key],
+            score: state.players[key].score + 2,
+          };
+          clueGiverPoints = clueGiverPoints + 1
+        }
+      }
+      return { ...pastArray, [key]: updatedPlayer };
+    },
+    state.playerArray
+  );
+  const updateClueGiverScore = {...updatedPlayers[state.clueGiverName], score:state.playerArray[state.clueGiverName].score+clueGiverPoints}
+  const returnArray = {...updatedPlayers,[state.clueGiverName]: updateClueGiverScore}
+  return returnArray;
+}
+
 const defaultLocalState = {
   roomNameHidden: false,
 };
+
 const defaultSharedState = {
   roomName: "",
   gameState: "CREATE_OR_JOIN_ROOM",
   clueGiverPossibilities: [],
   clueGiverName: "",
   level: Math.floor(Math.random() * 970) + 30,
-  hintIndex: 0,
+  promptIndex: 0,
   clueWord: "",
   players: {},
 };
+
 const localState = (state = defaultLocalState, action) => {
   switch (action.type) {
     case "ADD_PLAYER":
       return { ...state, localName: action.value };
+    case "REMOVE_PLAYER":
+      return { ...state, localName: undefined };
     default:
       return state;
   }
@@ -51,6 +112,8 @@ const localState = (state = defaultLocalState, action) => {
 
 const sharedState = (state = defaultSharedState, action) => {
   switch (action.type) {
+    case "JOIN_ROOM":
+      return { ...state, roomName: action.payload };
     case "ADD_PLAYER":
       if (!state.players[action.payload]) {
         const newPlayer = {
@@ -68,7 +131,35 @@ const sharedState = (state = defaultSharedState, action) => {
           players: tempPlayers,
           clueGiverPossibilities: clueGiverAdd,
         };
-      } else {//sets localName still
+      } else {
+        //sets localName still
+        return state;
+      }
+    case "REMOVE_PLAYER":
+      const updatedClueGivers = state.clueGiverPossibilities.map((key) => {
+        if (key !== action.payload) {
+          return key;
+        }
+      });
+      const updatedPlayers = { ...state.players };
+      delete updatedPlayers[action.payload];
+      return {
+        ...state,
+        clueGiverPossibilities: updatedClueGivers,
+        players: updatedPlayers,
+      };
+    case "ADD_GUESS":
+      if (state.playerName[action.playerName]) {
+        const updatedPlayer = {
+          ...state.players[action.playerName],
+          guess: action.payload,
+        };
+        const updatedPlayers = {
+          ...state.players,
+          [action.playerName]: updatedPlayer,
+        };
+        return { ...state, players: updatedPlayers };
+      } else {
         return state;
       }
     default:
