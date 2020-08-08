@@ -14,6 +14,14 @@ export const removePlayer = (value) => ({
     type:"REMOVE_PLAYER",
     payload: value
 })
+
+export const newPrompt = () => ({
+    type:"NEW_PROMPT"
+})
+export const addClue = (value) => ({
+    type:"ADD_CLUE",
+    payload:value
+})
 export const addGuess = (playerName, value)=>({
     type:"ADD_GUESS",
     playerName:playerName,
@@ -23,4 +31,7 @@ export const addGuess = (playerName, value)=>({
 
 export const startGuessing = ()=>({
     type: "START_GUESSING"
+})
+export const revealLevel = ()=>({
+    type:"REVEAL_LEVEL"
 })
