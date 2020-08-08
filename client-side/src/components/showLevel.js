@@ -2,11 +2,10 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import { getGameState, getLevel } from "./redux/selectors";
-import { topBarStyle, bottomBarStyle } from "./styles";
+import {  getLevel } from "./redux/selectors";
+import { topBarStyle } from "./styles";
 
 export default function ShowLevel() {
-  const gameState = useSelector(getGameState);
   const levelPercentage = useSelector(getLevel) / 10;
 
   const outsideColor = "#ffff1a";
@@ -72,7 +71,6 @@ export default function ShowLevel() {
         <div style={indicatorInsideStyleRight}>3</div>
         <div style={indicatorOutsideStyleRight}>2</div>
       </div>
-      {gameState === "GUESSING" ? (<div style={bottomBarStyle}></div>):(<div></div>)}
     </div>
   );
 }

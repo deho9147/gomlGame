@@ -9,8 +9,10 @@ import AddPlayer from "../addPlayer";
 import PlayerScoreboard from "../playerScoreboard";
 
 export default function WaitingRoom() {
+  
   const localName = useSelector(getLocalName);
   const dispatch = useDispatch();
+
   return (
     <div className="WaitingRoom">
       <AddPlayer />

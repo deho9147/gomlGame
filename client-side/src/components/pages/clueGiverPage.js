@@ -8,25 +8,27 @@ import { getClue, getPlayerInfo } from "../redux/selectors";
 import ClueGiverClueWord from "../clueGiverClueWord";
 import ShowLevel from "../showLevel";
 import PlayerScoreboard from "../playerScoreboard";
+import { bottomBarStyle } from "../styles";
 
 export default function ClueGiverPage() {
   const [value, setValue] = useState({});
   const dispatch = useDispatch();
   const clueWord = useSelector(getClue);
-  const players = useSelector(getPlayerInfo)
-  const playersReady = () =>{
-      let ready = true;
-      Object.keys(players).filter((key) => {
-        if (players.guess){
-            ready = false
-        }
-    })
-    return ready
-  }
+  const players = useSelector(getPlayerInfo);
+  const playersReady = () => {
+    let ready = true;
+    Object.keys(players).filter((key) => {
+      if (players.guess) {
+        ready = false;
+      }
+    });
+    return ready;
+  };
   return (
     <div className="ClueGiverPage">
       <ClueGiverClueWord />
       <ShowLevel />
+      <div style={bottomBarStyle}></div>
       {!clueWord ? (
         <div>
           <input
@@ -56,7 +58,18 @@ export default function ClueGiverPage() {
       ) : (
         <div></div>
       )}
-      { playersReady ? (<button type="submit" onClick={(e)=>{dispatch(revealLevel)}}>Reveal Level</button>):(<div></div>)}
+      {playersReady ? (
+        <button
+          type="submit"
+          onClick={(e) => {
+            dispatch(revealLevel);
+          }}
+        >
+          Reveal Level
+        </button>
+      ) : (
+        <div></div>
+      )}
       <PlayerScoreboard />
     </div>
   );

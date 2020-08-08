@@ -2,17 +2,18 @@ import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {addGuess} from './redux/actions'
-import {getClueWord, getLocalName} from './redux/selectors'
+import { addGuess } from "./redux/actions";
+import { getClueWord, getLocalName, getPlayerInfo } from "./redux/selectors";
 import { topBarStyle, bottomBarStyle, pointerStyle } from "./styles";
 
 export default function Seekbar() {
   const [value, setValue] = useState({ position: 500 });
-  const dispatch = useDispatch()
-  
-  const clueWord = useSelector(getClueWord)
-  const localName = useSelector(getLocalName)
-  
+  const dispatch = useDispatch();
+
+  const clueWord = useSelector(getClueWord);
+  const localName = useSelector(getLocalName);
+  const players = useSelector(getPlayerInfo);
+
   const getClickLocation = (e) => {
     let location =
       ((e.clientX - e.currentTarget.offsetLeft) / e.currentTarget.clientWidth) *
@@ -40,14 +41,26 @@ export default function Seekbar() {
           setValue({ position: getClickLocation(e) });
         }}
       >
-      <div
-        style={{
-          ...pointerStyle,
-          left: `calc(${(value.position / 10).toString()}% - 10px)`,
-        }}
-      ></div>
+        <div
+          style={{
+            ...pointerStyle,
+            backgroundColor: players[localName].color,
+            left: `calc(${(value.position / 10).toString()}% - 10px)`,
+          }}
+        ></div>
       </div>
-      {clueWord ? (<button type="submit" onClick={(e)=>{dispatch(addGuess(localName,value.position))}}>Add Guess</button>):<div></div>}
+      {clueWord ? (
+        <button
+          type="submit"
+          onClick={(e) => {
+            dispatch(addGuess(localName, value.position));
+          }}
+        >
+          Add Guess
+        </button>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
