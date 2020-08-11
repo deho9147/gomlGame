@@ -11,15 +11,17 @@ export default function DisplayGuesses() {
   return (
     <div className="DisplayGuesses" style={bottomBarStyle}>
       {Object.keys(players).map((key) => {
-        return (
-          <div
-            style={{
-              ...pointerStyle,
-              backgroundColor: players[key].color,
-              left: `calc(${(players[key].guess / 10).toString()}% - 10px)`,
-            }}
-          ></div>
-        );
+        if (players[key].guess) {
+          return (
+            <div
+              style={{
+                ...pointerStyle,
+                borderColor: players[key].color+" transparent",
+                left: `calc(${(players[key].guess / 10).toString()}% - 10px)`,
+              }}
+            ></div>
+          );
+        }
       })}
     </div>
   );

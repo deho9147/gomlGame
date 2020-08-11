@@ -21,7 +21,7 @@ sagaMiddleware.run(wsSagas);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <App classname="App"/>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

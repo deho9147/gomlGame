@@ -2,15 +2,15 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import { getPLayerInfo } from "./redux/selectors";
+import { getPlayerInfo } from "./redux/selectors";
 
 export default function PlayerScoreboard() {
-  const playerInfo = useSelector(getPLayerInfo);
+  const playerInfo = useSelector(getPlayerInfo);
   return (
-    <div className="playerScores">
+    <div className="PlayerScores">
       {Object.keys(playerInfo).map((key) => {
         return (
-          <div className="singleScoreboard" style={{ borderColor: playerInfo[key].color }}>
+          <div className="SingleScoreboard" style={{ borderColor: playerInfo[key].color }}>
             <h1>{key}</h1>
             <h1>{playerInfo[key].score}</h1>
           </div>

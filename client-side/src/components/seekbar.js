@@ -28,7 +28,7 @@ export default function Seekbar() {
   };
 
   return (
-    <div className="seekbar">
+    <div className="Seekbar">
       <div
         style={topBarStyle}
         onClick={(e) => {
@@ -44,7 +44,7 @@ export default function Seekbar() {
         <div
           style={{
             ...pointerStyle,
-            backgroundColor: players[localName].color,
+            borderColor: players[localName].color+" transparent",
             left: `calc(${(value.position / 10).toString()}% - 10px)`,
           }}
         ></div>

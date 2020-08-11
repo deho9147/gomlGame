@@ -1,7 +1,7 @@
 export const topBarStyle = {
     width:"80%",
     height: "30px",
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#2a2a2a",
     border: "1px solid black",
     borderTopLeftRadius: "30px",
     borderTopRightRadius: "30px",
@@ -14,7 +14,7 @@ export const topBarStyle = {
 export const bottomBarStyle = {
     width:"80%",
     height: "30px",
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#2a2a2a",
     border: "1px solid black",
     borderBottomLeftRadius: "30px",
     borderBottomRightRadius: "30px",

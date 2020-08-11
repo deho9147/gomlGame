@@ -1,41 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import {useSelector} from 'react-redux'
-import { getGameState, getLocalName, getClueGiver } from './components/redux/selectors';
+import { useSelector } from "react-redux";
+import {
+  getGameState,
+  getLocalName,
+  getClueGiver,
+} from "./components/redux/selectors";
 
-import FrontPage from './components/pages/frontPage'
-import WaitingRoom from './components/pages/waitingRoom'
-import ClueGiverPage from './components/pages/clueGiverPage';
-import LevelRevealPage from './components/pages/levelRevealPage'
+import FrontPage from "./components/pages/frontPage";
+import WaitingRoom from "./components/pages/waitingRoom";
+import ClueGiverPage from "./components/pages/clueGiverPage";
+import GuesserPage from "./components/pages/guesserPage";
+import LevelRevealPage from "./components/pages/levelRevealPage";
 
 function App() {
-  const gameState = useSelector(getGameState)
-  const localName = useSelector(getLocalName)
-  const clueGiver = useSelector(getClueGiver)
+  const gameState = useSelector(getGameState);
+  const localName = useSelector(getLocalName);
+  const clueGiver = useSelector(getClueGiver);
 
   const setPage = (gameState) => {
-    switch (gameState){
+    switch (gameState) {
       case "FRONT_PAGE":
-        return <FrontPage/>
+        return <FrontPage />;
+      case "WAITING":
+        return <WaitingRoom />;
       case "GUESSING":
-        if (localName === clueGiver){
-          return <ClueGiverPage/>
+        if (localName === clueGiver) {
+          return <ClueGiverPage />;
         } else {
-          return <GuesserPage/>
+          return <GuesserPage />;
         }
       case "REVEAL_LEVEL":
-        return <LevelRevealPage/>
+        return <LevelRevealPage />;
       default:
-        return(<div>Something went wrong</div>)
+        return <div>Something went wrong</div>;
     }
-  }
-  return (
-    <div className="App">
-      {setPage(gameState)}
-    </div>
-  );
+  };
+  return <div className="App">{setPage(gameState)}</div>;
 }
 
 export default App;

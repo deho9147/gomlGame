@@ -1,42 +1,68 @@
-.App {
+body {
+  background-color: #0d0d0d;
+}
+input[type="text"]{
   text-align: center;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px;
+  outline: none;
+}
+button{
+  color: white;
+  background-color: #002699;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 5px;
+  font-size: 18pt;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+}
+button:hover{
+  background-color: #001a66;
+
+}
+.App {
+  margin: 20px;
+  color:white;
+  background-color:#0d0d0d;
+  font-size: 20px;
+}
+.FrontPage{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.WaitingRoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.RoomName {
+  background-color: #3a3a3a;
+  width: 200px;
+  border-radius: 20px;
+  align-self: flex-end;
 }
 .ShowLevel{
   text-align: center;
   line-height: 15px;
   padding: auto;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.PlayerScores{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SingleScoreboard{
+  border-radius: 15px;
+  border: solid 15px;
+  min-width: 250px;
+  max-width: 250px;
 }

@@ -5,6 +5,10 @@ export const joinRoom = (value) => ({
     type:"JOIN_ROOM",
     payload:value
 })
+export const toggleRoomNameHidden = () => ({
+    type:"TOGGLE_ROOM_NAME_HIDDEN"
+})
+
 
 export const addPlayer = (value) => ({
     type:"ADD_PLAYER",
@@ -14,6 +18,7 @@ export const removePlayer = (value) => ({
     type:"REMOVE_PLAYER",
     payload: value
 })
+
 
 export const newPrompt = () => ({
     type:"NEW_PROMPT"

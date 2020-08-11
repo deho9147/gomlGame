@@ -9,7 +9,7 @@ export default function FrontPage() {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="FrontPage">
       <button
         type="submit"
         onClick={(e) => {
@@ -18,22 +18,24 @@ export default function FrontPage() {
       >
         Create Room
       </button>
-      <h2>or</h2>
-      <input
-        type="text"
-        onChange={(e) => {
-          setValue({ roomName: e.target });
-        }}
-        placeholder="Enter Room Name"
-      ></input>
-      <button
-        type="submit"
-        onClick={(e) => {
-          dispatch(joinRoom(value.roomName.toUpperCase()));
-        }}
-      >
-        Join Room
-      </button>
+      <div>or</div>
+      <div>
+        <input
+          type="text"
+          onChange={(e) => {
+            setValue({ roomName: e.target.value });
+          }}
+          placeholder="Enter Room Name"
+        ></input>
+        <button
+          type="submit"
+          onClick={(e) => {
+            dispatch(joinRoom(value.roomName.toUpperCase()));
+          }}
+        >
+          Join Room
+        </button>
+      </div>
     </div>
   );
 }

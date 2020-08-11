@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addPlayer } from "./redux/actions";
-import { getPlayerInfo } from "./redux/selectors";
-import { getLocalName } from "./redux/selectors";
+import { getPlayerInfo, getLocalName } from "./redux/selectors";
 
 export default function AddPlayer() {
   const [value, setValue] = useState({});
@@ -26,7 +25,7 @@ export default function AddPlayer() {
         <button
           type="submit"
           onClick={(e) => {
-            if (value.playerName.length) {
+            if (value.playerName) {
               if (playerInfo[value.playerName.toUpperCase()]) {
                 const reply = window.confirm(
                   "This name has been taken.\n Press OK if you are rejoining otherwise press Cancel and pick a new name"
@@ -34,15 +33,17 @@ export default function AddPlayer() {
                 if (reply === true) {
                   dispatch(addPlayer(value.playerName.toUpperCase()));
                 }
+              } else {
+                dispatch(addPlayer(value.playerName.toUpperCase()));
               }
-            } else {
-              dispatch(addPlayer(value.playerName.toUpperCase()));
             }
           }}
         >
-          Join Game
+          Join
         </button>
       </div>
     );
+  } else {
+    return <div></div>
   }
 }

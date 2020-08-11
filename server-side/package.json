@@ -1,0 +1,26 @@
+{
+  "name": "serverside",
+  "version": "1.0.0",
+  "description": "Get On My Level backend socket.io server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deho9147/gomlGame.git"
+  },
+  "keywords": [
+    "GOML",
+    "websocket"
+  ],
+  "author": "Derek Holland",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/deho9147/gomlGame/issues"
+  },
+  "homepage": "https://github.com/deho9147/gomlGame#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
+}

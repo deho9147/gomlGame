@@ -5,7 +5,6 @@ import prompts from "../res/prompts.json";
 
 function generatePlayerColor(state) {
   let colorIndex = Math.floor(Math.random() * colors.length);
-  console.log(colorIndex);
   let unique = false;
   if (Object.keys(state.players).length < colors.length - 2) {
     while (unique === false) {
@@ -45,11 +44,11 @@ function newClueGiver(state) {
 }
 
 function scorePoints(state) {
+  console.log(state);
   let clueGiverPoints = 0;
   const updatedPlayers = Object.keys(state.players).reduce((pastArray, key) => {
-    let updatedPlayer = { ...state.playerArray[key] };
+    let updatedPlayer = { ...state.players[key] };
     if (state.players[key].guess !== undefined) {
-      console.log("has guess");
       if (
         state.players[key].guess > state.level - 30 &&
         state.players[key].guess <= state.level
@@ -64,7 +63,7 @@ function scorePoints(state) {
         state.players[key].guess <= state.level + 30
       ) {
         updatedPlayer = {
-          ...state.tempPlayers[key],
+          ...state.players[key],
           score: state.players[key].score + 3,
         };
         clueGiverPoints = clueGiverPoints + 1;
@@ -82,12 +81,12 @@ function scorePoints(state) {
     return { ...pastArray, [key]: updatedPlayer };
   }, state.players);
   const updateClueGiverScore = {
-    ...updatedPlayers[state.clueGiverName],
-    score: state.playerArray[state.clueGiverName].score + clueGiverPoints,
+    ...updatedPlayers[state.clueGiver],
+    score: state.players[state.clueGiver].score + clueGiverPoints,
   };
   const returnArray = {
     ...updatedPlayers,
-    [state.clueGiverName]: updateClueGiverScore,
+    [state.clueGiver]: updateClueGiverScore,
   };
   return returnArray;
 }
@@ -112,11 +111,11 @@ const defaultLocalState = {
 
 const defaultSharedState = {
   roomName: "",
-  gameState: "CREATE_OR_JOIN_ROOM",
+  gameState: "FRONT_PAGE",
   clueGiverPossibilities: [],
-  clueGiverName: "",
+  clueGiver: "",
   level: Math.floor(Math.random() * 970) + 30,
-  promptIndex: 0,
+  prompt: 0,
   clueWord: "",
   players: {},
 };
@@ -124,9 +123,11 @@ const defaultSharedState = {
 const localState = (state = defaultLocalState, action) => {
   switch (action.type) {
     case "ADD_PLAYER":
-      return { ...state, localName: action.value };
+      return { ...state, localName: action.payload };
     case "REMOVE_PLAYER":
       return { ...state, localName: undefined };
+    case "TOGGLE_ROOM_NAME_HIDDEN":
+      return { ...state, roomNameHidden: !state.roomNameHidden };
     default:
       return state;
   }
@@ -179,12 +180,12 @@ const sharedState = (state = defaultSharedState, action) => {
         prompt: updatedPrompt.prompt,
       };
     case "ADD_CLUE":
-      return{
+      return {
         ...state,
-        clueWord:action.value
-      }
+        clueWord: action.payload,
+      };
     case "ADD_GUESS":
-      if (state.playerName[action.playerName]) {
+      if (state.players[action.playerName]) {
         const updatedPlayer = {
           ...state.players[action.playerName],
           guess: action.payload,
@@ -197,23 +198,30 @@ const sharedState = (state = defaultSharedState, action) => {
       } else {
         return state;
       }
-
+    case "UPDATE_TIME":
+      return { ...state, timer: action.payload };
     case "START_GUESSING":
       const noGuessPlayers = clearGuesses(state);
       const clueGiverVals = newClueGiver(state);
       const updatePrompt = newPrompt();
+      console.log(clueGiverVals);
       return {
         ...state,
         players: noGuessPlayers,
         clueGiver: clueGiverVals.clueGiver,
         clueGiverPossibilities: clueGiverVals.clueGiverPossibilities,
+        clueWord: "",
         level: updatePrompt.level,
         prompt: updatePrompt.prompt,
         gameState: "GUESSING",
       };
     case "REVEAL_LEVEL":
+      console.log(state);
       const scoredPlayers = scorePoints(state);
-      return { ...state, players: scoredPlayers, gameState: "LEVEL_REVEAL" };
+      return { ...state, players: scoredPlayers, gameState: "REVEAL_LEVEL" };
+
+    case "UPDATE_STATE":
+      return action.payload;
     default:
       return state;
   }
