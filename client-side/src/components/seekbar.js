@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addGuess } from "./redux/actions";
 import { getClueWord, getLocalName, getPlayerInfo } from "./redux/selectors";
 import { topBarStyle, bottomBarStyle, pointerStyle } from "./styles";
+import Prompt from "./prompt";
 
 export default function Seekbar() {
   const [value, setValue] = useState({ position: 500 });
@@ -41,13 +42,26 @@ export default function Seekbar() {
           setValue({ position: getClickLocation(e) });
         }}
       >
-        <div
-          style={{
-            ...pointerStyle,
-            borderColor: players[localName].color+" transparent",
-            left: `calc(${(value.position / 10).toString()}% - 10px)`,
-          }}
-        ></div>
+        {localName ? (
+          <div
+            style={{
+              ...pointerStyle,
+              borderColor: players[localName].color + " transparent",
+              left: `calc(${(value.position / 10).toString()}% - 10px)`,
+            }}
+          ></div>
+        ) : (
+          <div
+            style={{
+              ...pointerStyle,
+              borderColor: "red transparent",
+              left: `calc(${(value.position / 10).toString()}% - 10px)`,
+            }}
+          ></div>
+        )}
+      </div>
+      <div style={{width:"100%"}}>
+      <Prompt/>
       </div>
       {clueWord ? (
         <button
@@ -56,7 +70,7 @@ export default function Seekbar() {
             dispatch(addGuess(localName, value.position));
           }}
         >
-          Add Guess
+          {players[localName].guess ? (<div>Update Guess</div>):(<div>Add Guess</div>)}
         </button>
       ) : (
         <div></div>

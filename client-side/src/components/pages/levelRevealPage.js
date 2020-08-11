@@ -25,6 +25,7 @@ export default function LevelRevealPage() {
       <ShowLevel />
       <DisplayGuesses />
       <Prompt />
+      <div>
       {localName === clueGiver ? (
         <button
           type="submit"
@@ -37,6 +38,7 @@ export default function LevelRevealPage() {
       ) : (
         <div></div>
       )}
+      </div>
       <PlayerScoreboard />
       <AddPlayer />
     </div>

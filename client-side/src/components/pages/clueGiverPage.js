@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { newPrompt, addClue, revealLevel } from "../redux/actions";
-import { getPlayerInfo, getClueWord } from "../redux/selectors";
+import { getPlayerInfo, getClueWord, getClueGiver } from "../redux/selectors";
 
 import RoomName from "../roomName";
 import Timer from "../timer";
@@ -16,12 +16,13 @@ import PlayerScoreboard from "../playerScoreboard";
 export default function ClueGiverPage() {
   const [value, setValue] = useState({});
   const dispatch = useDispatch();
+  const clueGiver = useSelector(getClueGiver)
   const clueWord = useSelector(getClueWord);
   const players = useSelector(getPlayerInfo);
   const playersReady = () => {
     let ready = true;
     Object.keys(players).filter((key) => {
-      if (players.guess) {
+      if (!players[key].guess&&key!==clueGiver) {
         ready = false;
       }
     });
@@ -33,8 +34,11 @@ export default function ClueGiverPage() {
       <Timer />
       <ClueGiverClueWord />
       <ShowLevel />
-      <div style={bottomBarStyle}></div>
+      <div style={{width:"100%"}}>
+      <div style={{...bottomBarStyle}}></div>
+      </div>
       <Prompt />
+      <div>
       {!clueWord ? (
         <div>
           <input
@@ -47,7 +51,7 @@ export default function ClueGiverPage() {
           <button
             type="submit"
             onClick={(e) => {
-              dispatch(addClue(value.clueWord));
+              dispatch(addClue(value.clueWord.toUpperCase()));
             }}
           >
             Add Clue
@@ -64,7 +68,9 @@ export default function ClueGiverPage() {
       ) : (
         <div></div>
       )}
-      {playersReady ? (
+      </div>
+      <div>
+      {playersReady() ? (
         <button
           type="submit"
           onClick={(e) => {
@@ -76,6 +82,7 @@ export default function ClueGiverPage() {
       ) : (
         <div></div>
       )}
+      </div>
       <PlayerScoreboard />
     </div>
   );

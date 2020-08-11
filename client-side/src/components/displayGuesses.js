@@ -9,6 +9,7 @@ import { bottomBarStyle, pointerStyle } from "./styles";
 export default function DisplayGuesses() {
   const players = useSelector(getPlayerInfo);
   return (
+    <div>
     <div className="DisplayGuesses" style={bottomBarStyle}>
       {Object.keys(players).map((key) => {
         if (players[key].guess) {
@@ -23,6 +24,7 @@ export default function DisplayGuesses() {
           );
         }
       })}
+    </div>
     </div>
   );
 }

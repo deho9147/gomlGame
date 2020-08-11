@@ -8,25 +8,29 @@ export default function ClueGiverHintWord() {
   const clueWord = useSelector(getClueWord);
   const localName = useSelector(getLocalName);
 
+  const style = {
+    fontSize:"40px"
+  }
+
   return (
-    <div>
+    <div className="ClueGiverClueWord">
       {clueGiver === localName ? (
         !clueWord ? (
           <div> You are the Clue Giver</div>
         ) : (
           <div>
-            You gave the clue: <span>{clueWord}</span>
+            You gave the clue: <span style={style}>{clueWord}</span>
           </div>
         )
-      ) : !clueWord ? (
+      ) :( !clueWord ? (
         <div>
-          Waiting on <span>{clueGiver}</span> to give the clue
+          Waiting on <span style={style} >{clueGiver}</span> to give the clue
         </div>
       ) : (
         <div>
-          <span>{clueGiver}</span>gave the clue: <span>{clueWord}</span>
+          <span style={style} >{clueGiver}</span> gave the clue: <span style={style}>{clueWord}</span>
         </div>
-      )}
+      ))}
     </div>
   );
 }
