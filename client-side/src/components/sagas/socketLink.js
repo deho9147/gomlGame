@@ -14,7 +14,7 @@ import openSocket from "socket.io-client";
 
 import { getSharedState, getRoomName } from "../redux/selectors";
 
-const ws = new openSocket("ws://localhost:3003");
+const ws = new openSocket(":3003");
 
 function createEventChannel(mySocket) {
   return eventChannel((emit) => {

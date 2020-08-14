@@ -4,7 +4,8 @@
   "description": "Get On My Level backend socket.io server",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/deho9147/gomlGame#readme",
   "dependencies": {
+    "node": "^14.8.0",
     "socket.io": "^2.3.0"
   }
 }
