@@ -14,6 +14,8 @@ import ClueGiverPage from "./components/pages/clueGiverPage";
 import GuesserPage from "./components/pages/guesserPage";
 import LevelRevealPage from "./components/pages/levelRevealPage";
 
+import Footer from "./components/footer";
+
 function App() {
   const gameState = useSelector(getGameState);
   const localName = useSelector(getLocalName);
@@ -37,7 +39,9 @@ function App() {
         return <div>Something went wrong</div>;
     }
   };
-  return <div className="App">{setPage(gameState)}</div>;
+  return (
+      <body> <div className="App">{setPage(gameState)}</div> <Footer/> </body>
+  );
 }
 
 export default App;

@@ -29,12 +29,21 @@ button:hover {
   color: white;
   background-color: #0d0d0d;
   font-size: 20px;
+  min-height: 100%;
 }
 .FrontPage {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  font-size: 30px;
+}
+.FrontPage button{
+  font-size: 30px;
+}
+.FrontPage input[type="text"]{
+  width: 30%;
+  font-size: 30px;
 }
 .WaitingRoom {
   display: flex;
@@ -58,7 +67,20 @@ button:hover {
   display: flex;
   flex-direction: column;
   text-align: center;
-
+}
+.Rules {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.Rules h1{
+  font-size: 35px;
+}
+.Rules p{
+  align-self: center;
+  font-size: 25px;
+  padding: 20px;
+  width: 60%;
 }
 .RoomName {
   text-align: center;
@@ -79,8 +101,8 @@ button:hover {
 .Prompt {
   display: flex;
   flex-direction: row;
-  width: 80%;
-  align-self: center;
+  width: 100%;
+  text-align: center;
   justify-content: space-evenly;
   font-size: 35px;
 }
@@ -99,4 +121,24 @@ button:hover {
   border: solid 15px;
   min-width: 250px;
   max-width: 250px;
+}
+.Footer {
+  font-size: 12px;
+  color: white;
+  border-top: 2px;
+  border-color: #000000;
+  border-style: solid;
+  text-align: center;
+  padding: 5px;
+  position: fixed;
+  background-color: #0d0d0d;
+  bottom: 0;
+  width: 100%;
+}
+a {
+  color: white;
+}
+.Links {
+  display:flex;
+  justify-content: space-evenly;
 }

@@ -8,6 +8,8 @@ import { getLocalName } from "../redux/selectors";
 import RoomName from "../roomName";
 import AddPlayer from "../addPlayer";
 import PlayerScoreboard from "../playerScoreboard";
+import Rules from "./rules";
+import Footer from "../footer";
 
 export default function WaitingRoom() {
   const localName = useSelector(getLocalName);
@@ -26,6 +28,7 @@ export default function WaitingRoom() {
         <div></div>
       )}
       <PlayerScoreboard />
+      <Rules/>
     </div>
   );
 }

@@ -11,6 +11,7 @@ import ClueGiverClueWord from "../clueGiverClueWord";
 import Seekbar from "../seekbar";
 import AddPlayer from "../addPlayer";
 import PlayerScoreboard from "../playerScoreboard";
+import Footer from "../footer";
 
 export default function GuesserPage() {
   const dispatch = useDispatch();

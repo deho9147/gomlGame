@@ -8,7 +8,7 @@ import { topBarStyle, bottomBarStyle, pointerStyle } from "./styles";
 import Prompt from "./prompt";
 
 export default function Seekbar() {
-  const [value, setValue] = useState({ position: 500 });
+  const [value, setValue] = useState({ position: 500, dragging: false });
   const dispatch = useDispatch();
 
   const clueWord = useSelector(getClueWord);
@@ -32,14 +32,30 @@ export default function Seekbar() {
     <div className="Seekbar">
       <div
         style={topBarStyle}
-        onClick={(e) => {
-          setValue({ position: getClickLocation(e) });
+        onMouseDown={(e) => {
+          setValue({ position: getClickLocation(e), dragging: true });
+        }}
+        onMouseMove={(e) => {
+          if (value.dragging) {
+            setValue({ position: getClickLocation(e), dragging:true });
+          }
+        }}
+        onMouseUp={(e) => {
+          setValue({ position: getClickLocation(e), dragging: false });
         }}
       ></div>
       <div
         style={bottomBarStyle}
-        onClick={(e) => {
-          setValue({ position: getClickLocation(e) });
+        onMouseDown={(e) => {
+          setValue({ position: getClickLocation(e), dragging: true });
+        }}
+        onMouseMove={(e) => {
+          if (value.dragging) {
+            setValue({ position: getClickLocation(e), dragging:true });
+          }
+        }}
+        onMouseUp={(e) => {
+          setValue({ position: getClickLocation(e), dragging: false });
         }}
       >
         {localName ? (
@@ -60,9 +76,7 @@ export default function Seekbar() {
           ></div>
         )}
       </div>
-      <div style={{width:"100%"}}>
-      <Prompt/>
-      </div>
+      <Prompt style={{ width: "100%" }} />
       {clueWord ? (
         <button
           type="submit"
@@ -70,7 +84,11 @@ export default function Seekbar() {
             dispatch(addGuess(localName, value.position));
           }}
         >
-          {players[localName].guess ? (<div>Update Guess</div>):(<div>Add Guess</div>)}
+          {players[localName].guess ? (
+            <div>Update Guess</div>
+          ) : (
+            <div>Add Guess</div>
+          )}
         </button>
       ) : (
         <div></div>
