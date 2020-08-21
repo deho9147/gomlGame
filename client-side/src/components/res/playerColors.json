@@ -1,14 +1,14 @@
 [
-    { "color": "#ff1a1a" },
-    { "color": "#ff8c1a" },
-    { "color": "#ffff1a" },
-    { "color": "#66ff33" },
-    { "color": "#1affa3" },
-    { "color": "#1ad1ff" },
-    { "color": "#1a66ff" },
-    { "color": "#8c1aff" },
-    { "color": "#ff1aff" },
-    { "color": "#cc6600" },
-    { "color": "#ff1a1a" },
-    { "color": "#009900" }
-  ]
+  { "color": "#ff1a1a", "name": "red" },
+  { "color": "#ff8c1a", "name": "orange" },
+  { "color": "#ffff1a", "name": "yellow" },
+  { "color": "#66ff33", "name": "red" },
+  { "color": "#1affa3", "name": "light green" },
+  { "color": "#1ad1ff", "name": "light blue" },
+  { "color": "#1a66ff", "name": "blue" },
+  { "color": "#8c1aff", "name": "purple" },
+  { "color": "#ff1aff", "name": "pink" },
+  { "color": "#009900", "name": "dark green" },
+  { "color": "#8b4513", "name": "brown" },
+  { "color":"#ffffff", "name":"white"}
+]

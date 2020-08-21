@@ -1,4 +1,13 @@
-const io = require("socket.io")(3003);
+`use strict`;
+
+const app = require('express')();
+app.set('view engine','pug');
+const server = require('http').Server(app);
+
+const io = require("socket.io")(server);
+app.get('/',(req,res)=>{
+  res.render('index.pug')
+})
 
 let timerValues = {};
 let intervals = {};
@@ -70,3 +79,11 @@ io.on("connection", (socket) => {
     ];
   }
 });
+
+if (module === require.main){
+  const PORT = process.env.PORT || 8080;
+  server.listen(PORT,()=>{
+    console.log(`listening on port ${PORT}`);
+  })
+}
+module.exports = server

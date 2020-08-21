@@ -12,7 +12,7 @@ import {
 import openSocket from "socket.io-client";
 
 import { getSharedState, getRoomName } from "../redux/selectors";
-const ws = new openSocket(":3003");
+const ws = new openSocket("https://goml-websocket.wl.r.appspot.com");
 
 function createEventChannel(mySocket) {
   return eventChannel((emit) => {

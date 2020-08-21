@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { newPrompt, addClue, revealLevel } from "../redux/actions";
 import { getPlayerInfo, getClueWord, getClueGiver } from "../redux/selectors";
 
-import RoomName from "../roomName";
+import Header from "../header"
 import Timer from "../timer";
 import ClueGiverClueWord from "../clueGiverClueWord";
 import ShowLevel from "../showLevel";
 import { bottomBarStyle } from "../styles";
 import Prompt from "../prompt";
 import PlayerScoreboard from "../playerScoreboard";
+import Footer from "../footer";
 
 export default function ClueGiverPage() {
   const [value, setValue] = useState({});
@@ -30,7 +31,7 @@ export default function ClueGiverPage() {
   };
   return (
     <div className="ClueGiverPage">
-      <RoomName />
+      <Header />
       <Timer />
       <ClueGiverClueWord />
       <ShowLevel />
@@ -84,6 +85,7 @@ export default function ClueGiverPage() {
       )}
       </div>
       <PlayerScoreboard />
+      <Footer />
     </div>
   );
 }

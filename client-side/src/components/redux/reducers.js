@@ -44,7 +44,6 @@ function newClueGiver(state) {
 }
 
 function scorePoints(state) {
-  console.log(state);
   let clueGiverPoints = 0;
   const updatedPlayers = Object.keys(state.players).reduce((pastArray, key) => {
     let updatedPlayer = { ...state.players[key] };
@@ -204,7 +203,6 @@ const sharedState = (state = defaultSharedState, action) => {
       const noGuessPlayers = clearGuesses(state);
       const clueGiverVals = newClueGiver(state);
       const updatePrompt = newPrompt();
-      console.log(clueGiverVals);
       return {
         ...state,
         players: noGuessPlayers,
@@ -216,7 +214,6 @@ const sharedState = (state = defaultSharedState, action) => {
         gameState: "GUESSING",
       };
     case "REVEAL_LEVEL":
-      console.log(state);
       const scoredPlayers = scorePoints(state);
       return { ...state, players: scoredPlayers, gameState: "REVEAL_LEVEL" };
 

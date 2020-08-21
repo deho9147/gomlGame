@@ -79,13 +79,34 @@ button:hover {
 .Rules p{
   align-self: center;
   font-size: 25px;
-  padding: 20px;
-  width: 60%;
+  width: 70%;
+  line-height: 40px;
+}
+.Header {
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  justify-content: center;
+}
+.Title{
+  justify-content: center;
+  background-color: #2a2a2a;
+  align-self: center;
+  min-width: 20%;
+  padding-top: .2%;
+  padding-bottom: .2%;
+  margin-bottom: .5%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 20px;
 }
 .RoomName {
+  justify-content: right;
   text-align: center;
   background-color: #2a2a2a;
-  width: 200px;
+  line-height: 10px;
+  min-width: 10%;
+  max-width: 10%;
   border-radius: 20px;
   align-self: flex-end;
 }
@@ -119,8 +140,9 @@ button:hover {
   margin: 40px;
   border-radius: 15px;
   border: solid 15px;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 100px;
+  width: 14%;
+  max-width: 14%;
 }
 .Footer {
   font-size: 12px;

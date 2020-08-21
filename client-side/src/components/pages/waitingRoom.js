@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { startGuessing } from "../redux/actions";
 import { getLocalName } from "../redux/selectors";
 
-import RoomName from "../roomName";
+import Header from "../header";
 import AddPlayer from "../addPlayer";
 import PlayerScoreboard from "../playerScoreboard";
 import Rules from "./rules";
@@ -17,7 +17,7 @@ export default function WaitingRoom() {
 
   return (
     <div className="WaitingRoom">
-      <RoomName />
+      <Header/>
       <h1>Waiting for Players to Join</h1>
       <AddPlayer />
       {localName ? (
@@ -29,6 +29,7 @@ export default function WaitingRoom() {
       )}
       <PlayerScoreboard />
       <Rules/>
+      <Footer/>
     </div>
   );
 }

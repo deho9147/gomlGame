@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { createRoom, joinRoom } from "../redux/actions";
-import Seekbar from "../seekbar";
 import Rules from "./rules";
+import Header from "../header";
 import Footer from "../footer";
-
 
 export default function FrontPage() {
   const [value, setValue] = useState({ roomName: "" });
@@ -14,6 +13,7 @@ export default function FrontPage() {
 
   return (
     <div className="FrontPage">
+      <Header />
       <button
         type="submit"
         onClick={(e) => {
@@ -40,7 +40,8 @@ export default function FrontPage() {
           Join Room
         </button>
       </div>
-      <Rules/>
+      <Rules />
+      <Footer />
     </div>
   );
 }
