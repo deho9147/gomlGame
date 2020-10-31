@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { createRoom, joinRoom } from "../redux/actions";
 import Rules from "./rules";
 import Header from "../header";
-import Footer from "../footer";
 
 export default function FrontPage() {
   const [value, setValue] = useState({ roomName: "" });
@@ -41,7 +40,6 @@ export default function FrontPage() {
         </button>
       </div>
       <Rules />
-      <Footer />
     </div>
   );
 }

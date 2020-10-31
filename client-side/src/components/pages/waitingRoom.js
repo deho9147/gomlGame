@@ -9,7 +9,6 @@ import Header from "../header";
 import AddPlayer from "../addPlayer";
 import PlayerScoreboard from "../playerScoreboard";
 import Rules from "./rules";
-import Footer from "../footer";
 
 export default function WaitingRoom() {
   const localName = useSelector(getLocalName);
@@ -29,7 +28,6 @@ export default function WaitingRoom() {
       )}
       <PlayerScoreboard />
       <Rules/>
-      <Footer/>
     </div>
   );
 }

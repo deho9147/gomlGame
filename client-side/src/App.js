@@ -40,7 +40,7 @@ function App() {
     }
   };
   return (
-      <body> <div className="App">{setPage(gameState)}</div> <Footer/> </body>
+      <div><div className="App">{setPage(gameState)}</div><Footer /></div>
   );
 }
 

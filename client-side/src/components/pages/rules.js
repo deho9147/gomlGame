@@ -16,6 +16,25 @@ export default function Rules() {
           margin: "20px",
         }}
       >
+        <h1>Summary</h1>
+        <p>
+          All players are given a prompt and rating bar. There is one Clue
+          Giver who is given a rating, know as the Level, uses the prompt to devise a clue
+          to indicate the position of the Level. Guessers are given a
+          slider, known as the Tuner, to indicate where they believe the hidden Level is. If
+          accurate, the players score points.
+        </p>
+      </div>
+      <div
+        className="Rules"
+        style={{
+          borderColor: "#002699",
+          borderStyle: "solid",
+          borderWidth: "10px",
+          borderRadius: "20px",
+          margin: "20px",
+        }}
+      >
         <h1>Clue Giver Role</h1>
         <p>As the Clue Giver, You are given a Level and a Prompt: </p>
         <ShowLevel />
@@ -68,9 +87,9 @@ export default function Rules() {
           The Restrictions are not especially concrete, but here are some
           suggestions to make the game more enjoyable<br></br>
           <br></br>
-          1. Add or remove restrictions to make the game more
-          fun.<br></br>Suggestions: - Only movie references - Only Job Titles - No
-          Proper Nouns
+          1. Add or remove restrictions to make the game more fun.<br></br>
+          Suggestions: - Only movie references - Only Job Titles - No Proper
+          Nouns
           <br></br>
           <br></br>
           2. Try to keep the Clue to a single item, idea, or thingy. Often times

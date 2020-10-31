@@ -2,7 +2,7 @@ import React from 'react'
 export default function Footer(){
     return(
         <div className="Footer">
-        <div>
+        <div style={{padding:"8px"}}>
         If you have any comments, suggestions, or questions feel free to email me: <a href="mailto: dholland.14@gmail.com">dholland.14@gmail.com</a>
         </div>
         <div className = "Links">

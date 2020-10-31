@@ -12,7 +12,6 @@ import ShowLevel from "../showLevel";
 import { bottomBarStyle } from "../styles";
 import Prompt from "../prompt";
 import PlayerScoreboard from "../playerScoreboard";
-import Footer from "../footer";
 
 export default function ClueGiverPage() {
   const [value, setValue] = useState({});
@@ -85,7 +84,6 @@ export default function ClueGiverPage() {
       )}
       </div>
       <PlayerScoreboard />
-      <Footer />
     </div>
   );
 }

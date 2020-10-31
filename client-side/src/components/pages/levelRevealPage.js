@@ -12,7 +12,6 @@ import DisplayGuesses from "../displayGuesses";
 import Prompt from "../prompt";
 import PlayerScoreboard from "../playerScoreboard";
 import AddPlayer from "../addPlayer";
-import Footer from "../footer";
 
 export default function LevelRevealPage() {
   const clueGiver = useSelector(getClueGiver);
@@ -42,7 +41,6 @@ export default function LevelRevealPage() {
       </div>
       <PlayerScoreboard />
       <AddPlayer />
-    <Footer />
     </div>
   );
 }

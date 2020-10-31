@@ -11,7 +11,6 @@ app.get('/',(req,res)=>{
 
 let timerValues = {};
 let intervals = {};
-console.log("listening on 3003")
 io.on("connection", (socket) => {
   socket.on("CREATE_ROOM", (state) => {
     let roomName = Math.random().toString(36).substr(2, 5).toUpperCase();
