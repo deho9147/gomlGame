@@ -12,7 +12,7 @@ import {
 import openSocket from "socket.io-client";
 
 import { getSharedState, getRoomName } from "../redux/selectors";
-const ws = new openSocket("http://13.59.211.101");
+const ws = new openSocket("localhost:8080");
 
 function createEventChannel(mySocket) {
   return eventChannel((emit) => {

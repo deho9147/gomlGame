@@ -1,13 +1,13 @@
-//`use strict`;
+`use strict`;
 //commented stuff is for google app engine
-/*const app = require('express')();
+const app = require('express')();
 app.set('view engine','pug');
 const server = require('http').Server(app);
-*/
+
 const io = require("socket.io")(server);
-/*app.get('/',(req,res)=>{
+app.get('/',(req,res)=>{
   res.render('index.pug')
-})*/
+})
 
 let timerValues = {};
 let intervals = {};
@@ -78,7 +78,7 @@ io.on("connection", (socket) => {
     ];
   }
 });
-/*
+
 if (module === require.main){
   const PORT = process.env.PORT || 8080;
   server.listen(PORT,()=>{
@@ -86,4 +86,3 @@ if (module === require.main){
   })
 }
 module.exports = server
-*/
